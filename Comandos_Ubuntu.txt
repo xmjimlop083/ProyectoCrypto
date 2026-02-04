@@ -1,0 +1,2 @@
+docker run --rm -v $(pwd)/crypto-pro:/app -w /app -u $(id -u):$(id -g) node:24-alpine npm install
+docker run -it --rm -v $(pwd)/crypto-pro:/app -w /app -p 4200:4200 -u $(id -u):$(id -g) node:24-alpine npm start -- --host 0.0.0.0 --poll 2000

@@ -1,0 +1,29 @@
+<h2 class="mb-3">Lista de Criptomonedas</h2>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Símbolo</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (crypto of cryptos(); track crypto.id) {
+      <tr>
+        <td>
+          <img [src]="crypto.image" [alt]="crypto.name" width="25" height="25">
+        </td>
+        <td>{{ crypto.name }}</td>
+        <td>{{ crypto.symbol | uppercase }}</td>
+        <td>{{ crypto.current_price | currency }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" [routerLink]="['/detail', crypto.id]">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
