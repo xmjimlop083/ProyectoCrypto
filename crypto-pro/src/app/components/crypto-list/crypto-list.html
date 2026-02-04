@@ -5,7 +5,8 @@
       <th scope="col">Imagen</th>
       <th scope="col">Nombre</th>
       <th scope="col">Símbolo</th>
-      <th scope="col">Precio</th>
+      <th scope="col">Precio (EUR)</th>
+      <th scope="col">Cambio 24h</th>
       <th scope="col">Acciones</th>
     </tr>
   </thead>
@@ -17,7 +18,10 @@
         </td>
         <td>{{ crypto.name }}</td>
         <td>{{ crypto.symbol | uppercase }}</td>
-        <td>{{ crypto.current_price | currency }}</td>
+        <td>{{ crypto.current_price | number:'1.2-2' }} €</td>
+        <td [class.text-success]="crypto.price_change_percentage_24h > 0" [class.text-danger]="crypto.price_change_percentage_24h < 0">
+          {{ crypto.price_change_percentage_24h | number:'1.2-2' }}%
+        </td>
         <td>
           <button class="btn btn-primary btn-sm" [routerLink]="['/detail', crypto.id]">
             Ver Detalle
