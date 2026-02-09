@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <h2>Contáctanos</h2>
+  <form [formGroup]="contactForm" (ngSubmit)="sendEmail()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" id="name" class="form-control" formControlName="from_name">
+      @if (contactForm.get('from_name')?.invalid && contactForm.get('from_name')?.touched) {
+        <div class="text-danger">
+          El nombre es obligatorio
+        </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="from_email">
+      @if (contactForm.get('from_email')?.invalid && contactForm.get('from_email')?.touched) {
+        <div class="text-danger">
+          Introduce un email válido
+        </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="message" class="form-label">Mensaje</label>
+      <textarea id="message" class="form-control" rows="5" formControlName="message"></textarea>
+      @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+        <div class="text-danger">
+          El mensaje debe tener al menos 10 caracteres
+        </div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="contactForm.invalid || isSending">
+      {{ isSending ? 'Enviando...' : 'Enviar Mensaje' }}
+    </button>
+  </form>
+</div>

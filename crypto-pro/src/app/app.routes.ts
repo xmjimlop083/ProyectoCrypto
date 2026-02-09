@@ -14,5 +14,8 @@ export const routes: Routes = [
     path: 'detail/:id',
     loadComponent: () => import('./components/crypto-detail/crypto-detail').then(m => m.CryptoDetail)
   },
+  { path: 'contact',
+    loadComponent: () => import('./components/contact/contact').then(m => m.Contact)
+  },
   { path: '**', redirectTo: 'home' }
 ];

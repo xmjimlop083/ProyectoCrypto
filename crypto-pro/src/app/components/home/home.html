@@ -1,74 +1,66 @@
 <div class="hero-section">
   <div class="container text-center">
-    <h1 class="display-4 fw-bold">Bienvenido a CryptoDash</h1>
-    <p class="lead mb-4">Monitoriza el mercado de criptomonedas en tiempo real y toma mejores decisiones</p>
-    <a routerLink="/list" class="btn btn-light btn-lg">Ver Mercado</a>
-  </div>
-</div>
-
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Criptomonedas Destacadas</h2>
-  <div id="cryptoCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#cryptoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#cryptoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#cryptoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner rounded-3">
-      @for (crypto of featuredCryptos; track crypto.id) {
-      <div class="carousel-item" [class.active]="$first">
-        <img [src]="crypto.image" class="d-block w-100" [alt]="crypto.name">
-        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded">
-          <h5>{{ crypto.name }} ({{ crypto.symbol | uppercase }})</h5>
-          <p class="fs-5">
-            {{ crypto.current_price | currency:'EUR' }}
-            <span [class.text-success]="crypto.price_change_percentage_24h >= 0"
-                  [class.text-danger]="crypto.price_change_percentage_24h < 0" class="fw-bold ms-2">
-              {{ crypto.price_change_percentage_24h >= 0 ? '+' : '' }}{{ crypto.price_change_percentage_24h | number:'1.2-2' }}%
-            </span>
-          </p>
-        </div>
-      </div>
-      }
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#cryptoCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#cryptoCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <h1>Bienvenido a CryptoDash</h1>
+    <p class="lead">Monitoriza el mercado de criptomonedas en tiempo real y toma mejores decisiones</p>
+    <button type="button" routerLink="/list" class="btn btn-outline-light btn-lg">Ver Mercado</button>
   </div>
 </div>
 
 <div class="container mt-5 mb-5">
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card feature-card h-100 border-0">
-        <div class="card-body text-center">
-          <div class="display-4 mb-3">🚀</div>
-          <h5 class="card-title">Rápido</h5>
-          <p class="card-text text-muted">Datos actualizados al segundo.</p>
-        </div>
+  <h2 class="text-center mb-4">Tendencias de Mercado</h2>
+  @if (featuredCryptos().length > 0) {
+    <div id="cryptoCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        @for (crypto of featuredCryptos(); track crypto.id; let first = $first) {
+          <div class="carousel-item" [class.active]="first">
+            <div class="crypto-slide-content text-center p-5">
+              <img [src]="crypto.image" class="crypto-icon mb-3" [alt]="crypto.name">
+              <h3 class="fw-bold">{{ crypto.name }} <span class="text-muted">({{ crypto.symbol | uppercase }})</span></h3>
+              <p class="fs-4 price-text">{{ crypto.current_price | currency:'EUR' }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#cryptoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#cryptoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  } @else {
+    <div class="text-center p-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-3 lead">Cargando datos del mercado...</p>
+    </div>
+  }
+</div>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="feature-card h-100">
+        <div class="display-1 mb-3">🚀</div>
+        <h3>Rápido</h3>
+        <p class="text-muted">Datos actualizados al segundo</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card feature-card h-100 border-0">
-        <div class="card-body text-center">
-          <div class="display-4 mb-3">🔒</div>
-          <h5 class="card-title">Seguro</h5>
-          <p class="card-text text-muted">Información fiable de CoinGecko.</p>
-        </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-card h-100">
+        <div class="display-1 mb-3">🔒</div>
+        <h3>Seguro</h3>
+        <p class="text-muted">Fiabilidad garantizada</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card feature-card h-100 border-0">
-        <div class="card-body text-center">
-          <div class="display-4 mb-3">📊</div>
-          <h5 class="card-title">Análisis</h5>
-          <p class="card-text text-muted">Gráficos interactivos de precios.</p>
-        </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-card h-100">
+        <div class="display-1 mb-3">📊</div>
+        <h3>Gráficos</h3>
+        <p class="text-muted">Análisis visual detallado</p>
       </div>
     </div>
   </div>

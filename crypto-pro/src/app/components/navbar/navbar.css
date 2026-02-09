@@ -1,0 +1,4 @@
+.navigation-bar {
+  background-color: #1e3c72; /* Mismo color que el inicio del Hero */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sutil separación para otras páginas */
+}

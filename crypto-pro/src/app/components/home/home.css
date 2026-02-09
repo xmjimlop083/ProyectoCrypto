@@ -1,41 +1,57 @@
-/* HERO SECTION (El recuadro de arriba) */
 .hero-section {
-  /* Usamos !important para asegurar que pisa el azul por defecto */
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
-  color: white !important;
-  padding: 80px 0;
-  text-align: center;
-  margin-bottom: 40px;
-  border-radius: 0 0 20px 20px; /* Un toque estético extra */
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 100px 0;
+  color: white;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  box-shadow: 0 10px 30px rgba(30, 60, 114, 0.2);
+  margin-top: -1px;
+  padding-top: 80px; 
 }
 
-/* CARRUSEL (Las imágenes gigantes) */
-.carousel-item img {
-  height: 400px !important;      /* ¡OBLIGATORIO 400px! */
-  object-fit: cover !important;  /* ¡OBLIGATORIO Recortar, no estirar! */
-  width: 100% !important;        /* Ocupar todo el ancho */
-  border-radius: 15px;
+/* Nuevo estilo para el carrusel de tarjetas */
+.crypto-slide-content {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra suave */
+  border: 1px solid rgba(0,0,0,0.05);
+  min-height: 300px; /* Altura mínima consistente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* TEXTO SOBRE IMAGEN */
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.7) !important;
-  border-radius: 10px;
+.crypto-icon {
+  width: 120px;     /* Tamaño fijo y contenido */
+  height: 120px;
+  object-fit: contain; /* IMPORTANTE: Mantiene la proporción del logo */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.price-text {
+  color: #1e3c72; /* Color corporativo */
+  font-weight: bold;
+}
+
+/* Ajuste de flechas para que se vean sobre fondo blanco */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(30, 60, 114, 0.5); /* Flechas azules */
+  border-radius: 50%;
   padding: 20px;
-  backdrop-filter: blur(5px); /* Efecto cristal borroso moderno */
+  background-size: 50%, 50%;
 }
 
-/* TARJETAS DE ABAJO */
 .feature-card {
-  padding: 25px;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border-radius: 15px;
   transition: transform 0.3s ease;
-  background-color: white;
-  height: 100%;
 }
 
 .feature-card:hover {
-  transform: translateY(-10px); /* Que flote al pasar el ratón */
+  transform: translateY(-10px);
 }

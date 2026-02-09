@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Crypto, CryptoCurrency } from '../../services/crypto';
@@ -10,14 +10,14 @@ import { Crypto, CryptoCurrency } from '../../services/crypto';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
-  featuredCryptos: CryptoCurrency[] = [];
+  featuredCryptos = signal<CryptoCurrency[]>([]);
 
   constructor(private cryptoService: Crypto) {}
 
   ngOnInit(): void {
     this.cryptoService.getCryptos().subscribe({
       next: (data) => {
-        this.featuredCryptos = data.slice(0, 3);
+        this.featuredCryptos.set(data.slice(0, 3));
       },
       error: (err) => {
         console.error('Error fetching cryptos:', err);
