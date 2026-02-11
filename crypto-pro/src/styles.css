@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-router-outlet + * {
-   /* Esto empuja el footer hacia abajo si hay espacio libre */
-   margin-top: auto;
+#hola {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet {
+  flex: 1;
 }
 
 body {
