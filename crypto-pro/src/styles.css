@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+router-outlet + * {
+   /* Esto empuja el footer hacia abajo si hay espacio libre */
+   margin-top: auto;
+}
+
+body {
+  background-color: #a6acb4; /* Color de fondo suave (gris claro azulado) */
+  color: #333; /* Texto oscuro para contraste */
+}
