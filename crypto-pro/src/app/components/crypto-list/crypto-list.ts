@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Crypto, CryptoCurrency } from '../../services/crypto';
@@ -13,6 +13,15 @@ export class CryptoList implements OnInit {
   cryptos = signal<CryptoCurrency[]>([]);
 
   constructor(private cryptoService: Crypto) {}
+
+  filteredCryptos = computed(() => {
+    const query = this.cryptoService.searchQuery().toLowerCase();
+    const list = this.cryptos();
+
+    if (!query) return list;
+    
+    return list.filter(crypto => crypto.name.toLowerCase().includes(query) || crypto.symbol.toLowerCase().includes(query));
+  });
 
   ngOnInit(): void {
     this.cryptoService.getCryptos().subscribe((data) => {

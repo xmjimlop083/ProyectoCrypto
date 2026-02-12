@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (crypto of cryptos(); track crypto.id) {
+      @for (crypto of filteredCryptos(); track crypto.id) {
         <tr>
           <td>
             <img [src]="crypto.image" [alt]="crypto.name" width="25" height="25">

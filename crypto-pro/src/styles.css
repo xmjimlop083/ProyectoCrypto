@@ -5,11 +5,8 @@
   min-height: 100vh;
 }
 
-router-outlet {
-  flex: 1;
-}
 
 body {
-  background-color: #a6acb4; /* Color de fondo suave (gris claro azulado) */
-  color: #333; /* Texto oscuro para contraste */
+  background-color: #949a82; 
+  color: #333;
 }
