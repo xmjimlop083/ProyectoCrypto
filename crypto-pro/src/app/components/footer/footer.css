@@ -4,14 +4,3 @@
   padding-bottom: 20px;
   border-top: 1px solid rgba(255,255,255,0.1);
 }
-
-.footer-section a {
-  color: #adb5bd;
-  transition: color 0.2s;
-}
-
-.footer-section a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
