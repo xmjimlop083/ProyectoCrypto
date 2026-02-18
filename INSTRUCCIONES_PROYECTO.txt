@@ -1,0 +1,65 @@
+==============================================================================
+GUÍA DE INSTALACIÓN Y EJECUCIÓN - PROYECTO CRYPTODASH
+==============================================================================
+
+IMPORTANTE:
+Esta entrega contiene el código fuente y los archivos de configuración.
+No se incluyen las carpetas generadas automáticamente ('node_modules', '.angular', 'dist')
+para reducir el peso del archivo, tal y como es práctica habitual.
+
+Para ejecutar el proyecto, es necesario reconstruir las dependencias siguiendo estos pasos.
+
+REQUISITOS:
+1. Tener Docker Desktop instalado.
+2. Descomprimir la carpeta del proyecto.
+3. Abrir una terminal DENTRO de la carpeta descomprimida (donde vea el archivo 'package.json').
+
+==============================================================================
+PASO 1: RECONSTRUIR DEPENDENCIAS (SOLO LA PRIMERA VEZ)
+==============================================================================
+Este comando descargará todas las librerías necesarias (Bootstrap, Angular, EmailJS, etc.)
+basándose en el archivo package.json incluido.
+
+Copie y pegue el comando según su sistema operativo:
+
+[ OPCIÓN A: WINDOWS (PowerShell) ]
+docker run --rm -v ${PWD}:/app -w /app node:24-alpine npm install
+
+[ OPCIÓN B: LINUX / MAC / UBUNTU ]
+docker run --rm -v $(pwd):/app -w /app node:24-alpine npm install
+
+*Nota: Este proceso puede tardar unos minutos dependiendo de su conexión a internet.*
+
+==============================================================================
+PASO 2: ARRANCAR LA APLICACIÓN
+==============================================================================
+Una vez instaladas las dependencias, use este comando para iniciar el servidor de desarrollo.
+
+[ OPCIÓN A: WINDOWS (PowerShell) ]
+docker run -it --rm -v ${PWD}:/app -w /app -p 4200:4200 node:24-alpine npm start -- --host 0.0.0.0 --poll 2000
+
+[ OPCIÓN B: LINUX / MAC / UBUNTU ]
+docker run -it --rm -v $(pwd):/app -w /app -p 4200:4200 node:24-alpine npm start -- --host 0.0.0.0 --poll 2000
+
+==============================================================================
+PASO 3: VER EL PROYECTO
+==============================================================================
+Cuando vea el mensaje "Application bundle generation complete" en la terminal:
+
+1. Abra su navegador web.
+2. Visite: http://localhost:4200
+
+Para detener el servidor: Pulse Ctrl + C en la terminal.
+
+==============================================================================
+ESTRUCTURA DE ARCHIVOS ENTREGADOS
+==============================================================================
+- /src             -> Código fuente (Componentes, Servicios, Estilos).
+- angular.json     -> Configuración del CLI de Angular.
+- package.json     -> Listado de dependencias y scripts.
+- tsconfig.json    -> Configuración del compilador TypeScript.
+
+==============================================================================
+AUTOR: Miguel Jimenez Lopez
+CURSO: 2 DAW
+==============================================================================
